@@ -1,0 +1,100 @@
+.nav-links ul{
+  display:flex !important;
+  gap:14px;
+  align-items:center;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.nav-links ul li{ display:inline-block; }
+
+.nav-links ul li a{
+  position:relative !important;
+  top:0 !important;
+  vertical-align:middle;
+  padding:6px 8px;
+  color:#fff;
+}
+
+/* desktop hide mobile icons */
+.nav-links .fa-bars, .nav-links .fa-times{ display:none !important; }
+
+@media (max-width:700px){
+  /* allow JS to control visibility on mobile */
+  .nav-links{ display:none !important; }
+  .nav-links .fa-bars, .nav-links .fa-times{ display:inline-block !important; color:#fff; font-size:20px; }
+  .nav-links ul{ flex-direction:column; gap:12px; padding-left:0; }
+  .nav-links ul li a{ margin-left:0; }
+}
+
+/* Desktop-only: place nav-links at the top of the nav row without changing other elements */
+@media (min-width: 701px) {
+  .header nav .nav-links {
+    align-self: flex-start; /* move the links block to the top of the nav */
+  }
+
+  .header nav .nav-links ul {
+    display: flex !important;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+  }
+
+  .header nav .nav-links ul li a {
+    position: relative !important;
+    top: 0 !important; /* override legacy top offsets safely */
+    padding: 8px 10px;
+    display: inline-block;
+  }
+
+  /* Ensure mobile icons are hidden on desktop */
+  .nav-links .fa-bars, .nav-links .fa-times { display: none !important; }
+}
+
+  /* Hover + focus styles: sliding underline and subtle lift for a polished effect */
+  @media (min-width: 701px) {
+    .nav-links ul li a {
+      position: relative;
+      display: inline-block;
+      padding: 8px 10px;
+      color: #fff;
+      text-decoration: none;
+      transition: transform 180ms ease, color 180ms ease;
+      will-change: transform;
+    }
+
+    /* animated underline using pseudo-element */
+    .nav-links ul li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background: #f44336; /* accent */
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 220ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    .nav-links ul li a:hover::after,
+    .nav-links ul li a:focus::after {
+      transform: scaleX(1);
+    }
+
+    /* subtle lift on hover/focus */
+    .nav-links ul li a:hover,
+    .nav-links ul li a:focus {
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    /* keyboard focus visible for accessibility */
+    .nav-links ul li a:focus-visible {
+      box-shadow: 0 0 0 3px rgba(244,67,54,0.14);
+      border-radius: 4px;
+    }
+  }
